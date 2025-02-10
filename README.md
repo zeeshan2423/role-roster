@@ -1,6 +1,6 @@
 # Role Roster
 
-![Logo](assets/logo.png) <!-- Replace with your actual logo path -->
+![Logo](android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
 Role Roster is a cross-platform application built with Flutter that allows organizations to manage employee details, roles, and employment dates efficiently. The app supports Android, iOS, and web platforms.
 
@@ -14,9 +14,7 @@ Role Roster is a cross-platform application built with Flutter that allows organ
 
 ## Screenshots
 
-![Screenshot 1](assets/screenshot1.png) <!-- Replace with actual screenshot paths -->
-![Screenshot 2](assets/screenshot2.png)
-![Screenshot 3](assets/screenshot3.png)
+![Screenshot 1](assets/screenshot1.png)
 
 ## Getting Started
 
