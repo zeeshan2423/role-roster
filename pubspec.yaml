@@ -1,0 +1,32 @@
+name: role_roster
+description: "Role Roster is a cross-platform application built with Flutter that allows organizations to manage employee details, roles, and employment dates efficiently. The app supports Android, iOS, and web platforms."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  bloc: ^9.0.0
+  cupertino_icons: ^1.0.8
+  equatable: ^2.0.7
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.17
+  get_it: ^8.0.3
+  go_router: ^14.8.0
+  google_fonts: ^6.2.1
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^7.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/illustration/

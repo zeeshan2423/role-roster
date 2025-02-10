@@ -1,0 +1,3 @@
+class AppWidgets {
+  AppWidgets._();
+}
