@@ -28,11 +28,23 @@ class AppRouter {
         path: PAGES.employee.screenPath,
         name: PAGES.employee.screenName,
         // Builder function for creating the EmployeeScreen and providing the
-        // SplashCubit.
+        // EmployeeCubit.
         builder: (context, state) => BlocProvider(
           create: (context) => sl<EmployeeCubit>(),
           child: const EmployeeScreen(),
         ),
+        routes: [
+          GoRoute(
+            path: PAGES.addEmployee.screenPath,
+            name: PAGES.addEmployee.screenName,
+            // Builder function for creating the AddEmployeeScreen and providing
+            // the AddEmployeeCubit.
+            builder: (context, state) => BlocProvider(
+              create: (context) => sl<AddEmployeeCubit>(),
+              child: const AddEmployeeScreen(),
+            ),
+          ),
+        ],
       ),
     ],
   );

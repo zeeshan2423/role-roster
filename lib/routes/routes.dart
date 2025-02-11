@@ -7,6 +7,8 @@ extension AppPageExtension on PAGES {
     switch (this) {
       case PAGES.employee:
         return '/employee';
+      case PAGES.addEmployee:
+        return 'add-employee';
     }
   }
 
@@ -15,6 +17,8 @@ extension AppPageExtension on PAGES {
     switch (this) {
       case PAGES.employee:
         return 'EMPLOYEE';
+      case PAGES.addEmployee:
+        return 'ADD EMPLOYEE';
     }
   }
 
@@ -23,6 +27,8 @@ extension AppPageExtension on PAGES {
     switch (this) {
       case PAGES.employee:
         return 'Employee';
+      case PAGES.addEmployee:
+        return 'Add Employee';
     }
   }
 }

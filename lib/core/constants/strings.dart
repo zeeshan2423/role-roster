@@ -15,4 +15,25 @@ class AppStrings {
 
   /// Text to display when no employee record is found in the employee screen.
   static String get noEmployee => 'No employee record found';
+
+  /// App bar title of the add employee screen.
+  static String get addEmployeeTitle => 'Add Employee Details';
+
+  /// Hint text of the employee name field.
+  static String get employeeNameHint => 'Employee name';
+
+  /// Hint text of the select role field.
+  static String get selectRoleHint => 'Select role';
+
+  /// Hint text of the to date field.
+  static String get noDateHint => 'No date';
+
+  /// Label text of the cancel button.
+  static String get cancel => 'Cancel';
+
+  /// Label text of the save button.
+  static String get save => 'Save';
+
+  /// Label text of the today button.
+  static String get today => 'Today';
 }

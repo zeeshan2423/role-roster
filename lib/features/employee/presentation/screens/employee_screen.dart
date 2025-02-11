@@ -16,7 +16,9 @@ class EmployeeScreen extends StatelessWidget {
             textTheme.titleLarge?.copyWith(color: colorScheme.onPrimary),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.go(context.namedLocation(PAGES.addEmployee.screenName));
+        },
         backgroundColor: colorScheme.primaryContainer,
         child: Icon(Icons.add, color: colorScheme.onPrimary),
       ),
