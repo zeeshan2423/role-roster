@@ -36,4 +36,13 @@ class AppStrings {
 
   /// Label text of the today button.
   static String get today => 'Today';
+
+  /// Label text of the next monday button.
+  static String get nextMon => 'Next Monday';
+
+  /// Label text of the next tuesday button.
+  static String get nextTue => 'Next Tuesday';
+
+  /// Label text of the after 1 week button.
+  static String get afterWeek => 'After 1 week';
 }

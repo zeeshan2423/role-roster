@@ -4,4 +4,6 @@ extension ContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   GoRouterState get goRouterState => GoRouterState.of(this);
+
+  AddEmployeeCubit get addEmployeeCubit => read<AddEmployeeCubit>();
 }

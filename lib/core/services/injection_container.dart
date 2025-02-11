@@ -12,5 +12,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   sl
     // Register EmployeeCubit as a factory, providing dependencies.
-    ..registerFactory(EmployeeCubit.new);
+    ..registerFactory(EmployeeCubit.new)
+    // Register AddEmployeeCubit as a factory, providing dependencies.
+    ..registerFactory(AddEmployeeCubit.new);
 }
