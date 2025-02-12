@@ -27,7 +27,7 @@ class AddEmployeeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: cubit.employeeController,
+                    controller: cubit.employeeNameController,
                     onTapOutside: (e) {
                       FocusScope.of(context).unfocus();
                     },
@@ -309,7 +309,9 @@ class AddEmployeeScreen extends StatelessWidget {
                             colorScheme.primaryContainer,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await cubit.saveEmployee(context);
+                        },
                         child: Text(AppStrings.save),
                       ),
                       const SizedBox(width: 16),
@@ -395,6 +397,8 @@ class AddEmployeeScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
+                          cubit.selectedFromIndex.value = 0;
+                          cubit.selectedFromDay.value = DateTime.now();
                         },
                         child: Text(
                           AppStrings.cancel,
@@ -832,9 +836,6 @@ class AddEmployeeScreen extends StatelessWidget {
             markersMaxCount: 0,
             markerSize: 0,
           ),
-          onPageChanged: (e) {
-            cubit.focusedFromDay.value = e;
-          },
         ),
       ),
     );
@@ -893,9 +894,6 @@ class AddEmployeeScreen extends StatelessWidget {
             markersMaxCount: 0,
             markerSize: 0,
           ),
-          onPageChanged: (e) {
-            cubit.focusedToDay.value = e;
-          },
         ),
       ),
     );

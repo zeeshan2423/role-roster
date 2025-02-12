@@ -5,10 +5,13 @@ part 'add_employee_state.dart';
 class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   AddEmployeeCubit() : super(AddEmployeeInitial());
 
-  final employeeController = TextEditingController();
+  final employeeNameController = TextEditingController();
   final roleController = TextEditingController();
   final fromDateController = TextEditingController(text: AppStrings.today);
   final toDateController = TextEditingController();
+
+  final fromDate = DateTime.now();
+  DateTime? toDate;
 
   final selectedFromIndex = ValueNotifier<int>(0);
   final selectedToIndex = ValueNotifier<int>(0);
@@ -23,5 +26,36 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
       date = date.add(const Duration(days: 1));
     }
     return date;
+  }
+
+  Future<void> saveEmployee(BuildContext context) async {
+    final name = employeeNameController.text;
+    final role = roleController.text;
+    final fromDate = fromDateController.text;
+
+    if (name.isEmpty || role.isEmpty || fromDate.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Employee name, role and from date are mandatory'),
+        ),
+      );
+      return;
+    }
+
+    final employee = {
+      'name': name,
+      'role': role,
+      'fromDate': this.fromDate.toIso8601String(),
+      'toDate': toDate?.toIso8601String(),
+    };
+
+    await DatabaseHelper().addEmployee(employee);
+
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Employee added successfully')),
+      );
+      context.pop(true);
+    }
   }
 }

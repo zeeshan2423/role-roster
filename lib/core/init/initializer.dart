@@ -23,6 +23,9 @@ class AppInitializer {
       DeviceOrientation.portraitUp,
     ]);
 
+    // Initialize the database
+    await DatabaseHelper().database;
+
     // Set up a custom Bloc observer for logging Bloc events and state changes.
     Bloc.observer = AppBlocObserver();
   }
