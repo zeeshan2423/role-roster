@@ -10,7 +10,7 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   final fromDateController = TextEditingController(text: AppStrings.today);
   final toDateController = TextEditingController();
 
-  final fromDate = DateTime.now();
+  DateTime fromDate = DateTime.now();
   DateTime? toDate;
 
   final selectedFromIndex = ValueNotifier<int>(0);
@@ -18,7 +18,7 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   final focusedFromDay = ValueNotifier<DateTime>(DateTime.now());
   final focusedToDay = ValueNotifier<DateTime>(DateTime.now());
   final selectedFromDay = ValueNotifier<DateTime?>(DateTime.now());
-  final selectedToDay = ValueNotifier<DateTime?>(DateTime.now());
+  final selectedToDay = ValueNotifier<DateTime?>(null);
 
   DateTime nextWeekday(DateTime fromDate, int weekday) {
     var date = fromDate.add(const Duration(days: 1));
@@ -42,12 +42,12 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
       return;
     }
 
-    final employee = {
-      'name': name,
-      'role': role,
-      'fromDate': this.fromDate.toIso8601String(),
-      'toDate': toDate?.toIso8601String(),
-    };
+    final employee = Employee(
+      name: name,
+      role: role,
+      fromDate: this.fromDate,
+      toDate: toDate,
+    );
 
     await DatabaseHelper().addEmployee(employee);
 

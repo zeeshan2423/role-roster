@@ -28,6 +28,7 @@ export 'package:role_roster/core/theme/theme.dart';
 export 'package:role_roster/core/theme/typography.dart';
 export 'package:role_roster/core/utils/database_helper.dart';
 export 'package:role_roster/features/add_employee/cubit/add_employee_cubit.dart';
+export 'package:role_roster/features/add_employee/models/employee.dart';
 export 'package:role_roster/features/add_employee/presentation/screens/add_employee_screen.dart';
 export 'package:role_roster/features/employee/cubit/employee_cubit.dart';
 export 'package:role_roster/features/employee/presentation/screens/employee_screen.dart';

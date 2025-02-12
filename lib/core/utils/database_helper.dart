@@ -14,36 +14,49 @@ class DatabaseHelper {
   }
 
   Future<Database> _initDatabase() async {
-    final databasePath = await getDatabasesPath();
-    final path = join(databasePath, 'employees.db');
+    final path = '${await getDatabasesPath()}employee.db';
 
     return openDatabase(
       path,
-      version: 1,
-      onCreate: _onCreate,
+      version: 2,
+      onCreate: (db, version) async {
+        await db.execute('''
+        CREATE TABLE employees (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL,
+          role TEXT NOT NULL,
+          from_date INTEGER NOT NULL,
+          to_date INTEGER
+        )
+      ''');
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db
+              .execute('ALTER TABLE employees ADD COLUMN from_date INTEGER');
+          await db.execute('ALTER TABLE employees ADD COLUMN to_date INTEGER');
+        }
+      },
     );
   }
 
-  Future<void> _onCreate(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE employees (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        role TEXT NOT NULL,
-        fromDate TEXT NOT NULL,
-        toDate TEXT
-      )
-    ''');
+  Future<int> addEmployee(Employee employee) async {
+    final db = await database;
+    return db.insert(
+      'employees',
+      {
+        'name': employee.name,
+        'role': employee.role,
+        'from_date': employee.fromDate.millisecondsSinceEpoch,
+        'to_date': employee.toDate?.millisecondsSinceEpoch,
+      },
+    );
   }
 
-  Future<int> addEmployee(Map<String, dynamic> employee) async {
+  Future<List<Employee>> getEmployees() async {
     final db = await database;
-    return db.insert('employees', employee);
-  }
-
-  Future<List<Map<String, dynamic>>> getEmployees() async {
-    final db = await database;
-    return db.query('employees');
+    final List<Map<String, dynamic>> maps = await db.query('employees');
+    return maps.map(Employee.fromMap).toList();
   }
 
   Future<int> updateEmployee(int id, Map<String, dynamic> employee) async {

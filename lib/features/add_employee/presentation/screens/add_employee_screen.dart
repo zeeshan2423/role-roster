@@ -165,6 +165,7 @@ class AddEmployeeScreen extends StatelessWidget {
 
                               cubit.fromDateController.text =
                                   isToday ? AppStrings.today : result ?? '';
+                              cubit.fromDate = parsedDate;
                             }
                           },
                           onTapOutside: (e) {
@@ -230,7 +231,10 @@ class AddEmployeeScreen extends StatelessWidget {
                               },
                             );
                             if ((result ?? '').isNotEmpty) {
+                              final parsedDate =
+                                  DateFormat('dd MMM yyyy').parse(result ?? '');
                               cubit.toDateController.text = result ?? '';
+                              cubit.toDate = parsedDate;
                             } else {
                               cubit.toDateController.text =
                                   AppStrings.noDateHint;
@@ -872,18 +876,23 @@ class AddEmployeeScreen extends StatelessWidget {
             headerPadding: const EdgeInsets.symmetric(horizontal: 24),
           ),
           focusedDay: focusedDay,
-          selectedDayPredicate: (day) => isSameDay(selectedDay, day),
           rowHeight: 42,
           availableGestures: AvailableGestures.none,
           calendarStyle: CalendarStyle(
             todayDecoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: Colors.transparent),
+              color: selectedDay != null
+                  ? colorScheme.primaryContainer
+                  : Colors.transparent,
+              border: Border.all(
+                color: selectedDay == null
+                    ? Colors.transparent
+                    : colorScheme.primaryContainer,
+              ),
               shape: BoxShape.circle,
             ),
             selectedTextStyle: TextStyle(color: colorScheme.onPrimary),
             todayTextStyle: TextStyle(
-              color: !isSameDay(selectedDay, focusedDay)
+              color: selectedDay == null
                   ? colorScheme.primaryContainer
                   : colorScheme.onPrimary,
             ),
